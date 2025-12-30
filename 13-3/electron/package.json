@@ -1,0 +1,74 @@
+{
+  "name": "face-attendance",
+  "productName": "Face-Based Access Management System",
+  "version": "1.0.0",
+  "description": "Face-Based Access Management System",
+  "author": "Dakgangjung122",
+  "main": "main.js",
+  "scripts": {
+    "start": "cd ../frontend && npm run build && cd ../electron && electron .",
+    "build": "cd ../frontend && npm run build && cd ../electron && electron-builder",
+    "build:win": "cd ../frontend && npm run build && cd ../electron && electron-builder --win",
+    "build:mac": "cd ../frontend && npm run build && cd ../electron && electron-builder --mac",
+    "build:linux": "cd ../frontend && npm run build && cd ../electron && electron-builder --linux",
+    "dist": "cd ../frontend && npm run build && cd ../electron && electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^36.3.2",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.faceattendance.app",
+    "productName": "Face-Based Access Management System",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "dist/**/*",
+      "icon.png",
+      "icon.ico",
+      "icon.icns"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        }
+      ],
+      "icon": "icon.ico"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "icon.png",
+      "category": "Utility"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
