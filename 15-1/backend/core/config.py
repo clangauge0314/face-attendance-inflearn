@@ -7,7 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / ".env")
 
-DB_PATH = BASE_DIR / "face_authentication_access.db"
+DB_PATH = BASE_DIR / "data" / "db" / "face_authentication_access.db"
+os.makedirs(DB_PATH.parent, exist_ok=True)
 DATABASE_URL = f"sqlite:///{DB_PATH}"
 
 JWT_SECRET = os.getenv("JWT_SECRET", "face-authentication-access-secret-key-change-in-production")
